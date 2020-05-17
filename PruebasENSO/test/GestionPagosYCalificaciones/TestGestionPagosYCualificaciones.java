@@ -36,7 +36,7 @@ class TestGestionPagosYCualificaciones {
 	///// Caso de prueba válido
 	@Test
 	@DisplayName("P-01-C01")
-	void P01_C01() {
+	void PR01_CP001() {
 		//Arrange
 		int idMenu = 0;
 		String primero = "macarrones con salsa de tomate ";
@@ -64,7 +64,7 @@ class TestGestionPagosYCualificaciones {
 		//El id del menú no es válido
 		@Test
 		@DisplayName("P-01-C02")
-		void P01_C02() {
+		void PR01_CP002() {
 			//Arrange
 			int idMenu = 50;
 			String primero = "macarrones con salsa de tomate";
@@ -80,7 +80,7 @@ class TestGestionPagosYCualificaciones {
 		//El primer plato no es válido
 		@Test
 		@DisplayName("P-01-C03")
-		void P01_C03() {
+		void PR01_CP003() {
 			//Arrange
 			int idMenu = 0;
 			String primero = "Jamón asado";
@@ -96,7 +96,7 @@ class TestGestionPagosYCualificaciones {
 		//El segundo plato no es válido
 		@Test
 		@DisplayName("P-01-C04")
-		void P01_C04() {
+		void PR01_CP004() {
 			//Arrange
 			int idMenu = 0;
 			String primero = "macarrones con salsa de tomate";
@@ -112,7 +112,7 @@ class TestGestionPagosYCualificaciones {
 		//El postre no es válido
 		@Test
 		@DisplayName("P-01-C05")
-		void P01_C05() {
+		void PR01_CP005() {
 			//Arrange
 			int idMenu = 0;
 			String primero = "macarrones con salsa de tomate";
@@ -128,7 +128,7 @@ class TestGestionPagosYCualificaciones {
 		//La bebida no es válida
 		@Test
 		@DisplayName("P-01-C06")
-		void P01_C06() {
+		void PR01_CP006() {
 			//Arrange
 			int idMenu = 0;
 			String primero = "macarrones con salsa de tomate";
