@@ -48,7 +48,7 @@ class TestValorarPlatos {
 
 	/////
 	@Test
-	@DisplayName("P-02-01")
+	@DisplayName("P-02-C01")
 	void testP02_C1() {
 		// Arrange
 		boolean fallo=false;
@@ -72,20 +72,21 @@ class TestValorarPlatos {
 	}
 
 	@Test
-	@DisplayName("P-02-02")
+	@DisplayName("P-02-C02")
 	void testP02_C2() {
 		// Arrange
 		Factura factura = null;// <-en este caso de prueba "factura" será nulo
 		int notaPrimero = 5;
 		int notaSegundo = 4;
 		int notaPostre = 9;
-		assertThrows(Exception.class, () -> {
+		//Assert
+		assertThrows(IllegalArgumentException.class, () -> {
 			gestionCalificaciones.valorarPlatos(factura, notaPrimero, notaSegundo, notaPostre);
-		}, "Se esperaba una excepción al valorar los platos y no se ha producido");
+		}, "Se esperaba una excepción IllegalArgumentException al valorar los platos y no se ha producido");
 	}
 
 	@Test
-	@DisplayName("P-02-03")
+	@DisplayName("P-02-C03")
 	void testP02_C3() {
 		// Arrange
 		String primero = "sopa de estrellas";
@@ -97,13 +98,14 @@ class TestValorarPlatos {
 		int notaPrimero = -1;// valor1 fuera del rango por la izquierda
 		int notaSegundo = 8;
 		int notaPostre = 8;
+		//Assert
 		assertThrows(IllegalArgumentException.class, () -> {
 			gestionCalificaciones.valorarPlatos(factura, notaPrimero, notaSegundo, notaPostre);
 		}, "Se esperaba una excepción al valorar los platos y no se ha producido");
 	}
 
 	@Test
-	@DisplayName("P-02-04")
+	@DisplayName("P-02-C04")
 	void testP02_C4() {
 		// Arrange
 		String primero = "sopa de estrellas";
@@ -115,14 +117,14 @@ class TestValorarPlatos {
 		int notaPrimero = 11;// valor1 fuera del rango por la derecha
 		int notaSegundo = 4;
 		int notaPostre = 9;
-
+		//Assert
 		assertThrows(IllegalArgumentException.class, () -> {
 			gestionCalificaciones.valorarPlatos(factura, notaPrimero, notaSegundo, notaPostre);
 		}, "Se esperaba una excepción al valorar los platos y no se ha producido");
 	}
 
 	@Test
-	@DisplayName("P-02-05")
+	@DisplayName("P-02-C05")
 	void testP02_C5() {
 		// Arrange
 		String primero = "sopa de estrellas";
@@ -134,14 +136,14 @@ class TestValorarPlatos {
 		int notaPrimero = 5;
 		int notaSegundo = -1;// valor2 fuera del rango por la izquierda
 		int notaPostre = 9;
-
+		//Assert
 		assertThrows(IllegalArgumentException.class, () -> {
 			gestionCalificaciones.valorarPlatos(factura, notaPrimero, notaSegundo, notaPostre);
 		}, "Se esperaba una excepción al valorar los platos y no se ha producido");
 	}
 
 	@Test
-	@DisplayName("P-02-06")
+	@DisplayName("P-02-C06")
 	void testP02_C6() {
 		// Arrange
 		String primero = "sopa de estrellas";
@@ -153,14 +155,14 @@ class TestValorarPlatos {
 		int notaPrimero = 5;
 		int notaSegundo = 11;// valor2 fuera del rango por la derecha
 		int notaPostre = 9;
-
+		//Assert
 		assertThrows(IllegalArgumentException.class, () -> {
 			gestionCalificaciones.valorarPlatos(factura, notaPrimero, notaSegundo, notaPostre);
 		}, "Se esperaba una excepción al valorar los platos y no se ha producido");
 	}
 
 	@Test
-	@DisplayName("P-02-07")
+	@DisplayName("P-02-C07")
 	void testP02_C7() {
 		// Arrange
 		String primero = "sopa de estrellas";
@@ -172,14 +174,14 @@ class TestValorarPlatos {
 		int notaPrimero = 5;
 		int notaSegundo = 4;
 		int notaPostre = -1;// valor3 fuera del rango por la izquierda
-		
+		//Assert
 		assertThrows(IllegalArgumentException.class, () -> {
 			gestionCalificaciones.valorarPlatos(factura, notaPrimero, notaSegundo, notaPostre);
 		}, "Se esperaba una excepción al valorar los platos y no se ha producido");
 	}
 
 	@Test
-	@DisplayName("P-02-08")
+	@DisplayName("P-02-C08")
 	void testP02_C8() {
 		// Arrange
 		String primero = "sopa de estrellas";
@@ -191,7 +193,7 @@ class TestValorarPlatos {
 		int notaPrimero = 5;
 		int notaSegundo = 4;
 		int notaPostre = 11;// valor3 fuera del rango por la derecha
-
+		//Assert
 		assertThrows(IllegalArgumentException.class, () -> {
 			gestionCalificaciones.valorarPlatos(factura, notaPrimero, notaSegundo, notaPostre);
 		}, "Se esperaba una excepción al valorar los platos y no se ha producido");
