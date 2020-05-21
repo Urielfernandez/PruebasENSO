@@ -25,13 +25,23 @@ import SeleccionMenu.IUSeleccionMenu;
 import SeleccionMenu.SeleccionMenu;
 
 public class Probador {
+	public static int suma(int s1, int s2) {
+		// return 0; // Para pruebas con Mocks
+		return s1 + s2; // Pruebas convencionales
+	}
+	public static int mult(int mdr, int mdo) {
+		int result = 0;
 
+		for (int i = 0; i < mdr; i++)
+			result = suma(result, mdo);
+		return result;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		//EJEMPLOS DE USO GESTION DE MENÚS
-		IUDefinicionMenus dmg=new GestionMenus();
-		IUVisionMenusGestion vmg=(IUVisionMenusGestion)dmg;
+		//IUDefinicionMenus dmg=new GestionMenus();
+		//IUVisionMenusGestion vmg=(IUVisionMenusGestion)dmg;
 		/*Scanner sc = new Scanner(System.in);
 		System.out.println("Introduzca el año en el que está disponible el menú que desea modificar");
 		String anho = sc.next();
@@ -86,6 +96,7 @@ public class Probador {
 		//vmg.verMenusSemana();
 		
 		//EJEMPLOS DE USO SELECCIÓN MENÚ
+		/*
 		IUSeleccionMenu sm=new SeleccionMenu();
 		//sm.verPlatosMenuDia();
 		Plato primero=new Plato( "lentejas", "primero");
@@ -113,7 +124,8 @@ public class Probador {
 		//vme.verPlatosMasComidos(new Date());
 		//vme.verPuntuacionesPlatosDia();
 		//vme.verRankginPlatos();
-		
+		*/
+		System.out.println(mult(5,5));
 	}
 
 }
