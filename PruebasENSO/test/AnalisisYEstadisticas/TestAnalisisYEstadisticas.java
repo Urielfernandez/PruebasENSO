@@ -37,7 +37,7 @@ class TestAnalisisYEstadisticas {
 	}
 
 	
-
+	// Uriel Fernández Graña
 	@Nested
 	class TestsverHorasMasConcurridas{
 		AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
@@ -68,23 +68,16 @@ class TestAnalisisYEstadisticas {
 		void PR05_CP001(){
 			//Arrange
 			HashMap<Date,Date> tiempos = new HashMap<>();
-			Date fecha = new Date();
-			HashMap<Integer, Double> x = null;
-			//Act
-
-
-			tiempos.put(fecha, fecha);
 
 			try {
 				Mockito.when(mockDatosFacturas.obtenerParesFechas()).thenReturn(tiempos);
-				x = this.ae.verHorasMasConcurridas();
 			} catch (IOException | JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			//Assert
-			assertNotNull(x,"No se han obtenido horas más concurridas");
+			assertThrows(IllegalArgumentException.class, ()->{ae.verHorasMasConcurridas();},"No se ha avisado del error por el parámetro");
 		}
 		
 		@Test
@@ -94,10 +87,8 @@ class TestAnalisisYEstadisticas {
 			HashMap<Date,Date> tiempos = new HashMap<>();
 			Date fecha = new Date();
 			HashMap<Integer, Double> x = null;
+			
 			//Act
-
-
-			tiempos.put(fecha, fecha);
 			tiempos.put(fecha, fecha);
 
 			try {
@@ -108,21 +99,33 @@ class TestAnalisisYEstadisticas {
 				e.printStackTrace();
 			}
 			
-			
 			//Assert
-			assertNotNull(x,"No se han obtenido horas más concurridas");
+			assertNotNull(x, "No se han podido calcular las horas más concurridas");
 		}
 		
 		@Test
-		@Disabled("El caso asociado a esta prueba contiene un camino intratable")
 		@DisplayName("PCB-04-C3")
 		void PR05_CP003(){
 			//Arrange
+			HashMap<Date,Date> tiempos = new HashMap<>();
+			Date fecha = new Date();
+			Date fecha2 = new Date(100000);
+			HashMap<Integer, Double> x = null;
 			
 			//Act
+			tiempos.put(fecha, fecha);
+			tiempos.put(fecha2, fecha2);
+
+			try {
+				Mockito.when(mockDatosFacturas.obtenerParesFechas()).thenReturn(tiempos);
+				x = this.ae.verHorasMasConcurridas();
+			} catch (IOException | JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			//Assert
-			
+			assertNotNull(x, "No se han podido calcular las horas más concurridas");
 		}
 		
 		@Test
@@ -130,14 +133,13 @@ class TestAnalisisYEstadisticas {
 		void PR05_CP004(){
 			//Arrange
 			HashMap<Date,Date> tiempos = new HashMap<>();
-			Date fecha = new Date();
-			Date fecha2 = new Date(1000000);
+			Date fecha = new Date(1000);
+			Date fechaAux = new Date(1000);
 			HashMap<Integer, Double> x = null;
-			//Act
-
 			
+			//Act
 			tiempos.put(fecha, fecha);
-			tiempos.put(fecha2,fecha2);
+			tiempos.put(fechaAux, fechaAux);
 
 			try {
 				Mockito.when(mockDatosFacturas.obtenerParesFechas()).thenReturn(tiempos);
@@ -148,109 +150,12 @@ class TestAnalisisYEstadisticas {
 			}
 			
 			//Assert
-			assertNotNull(x,"No se han obtenido horas más concurridas");
+			assertNotNull(x, "No se han podido calcular las horas más concurridas");
 		}
 		
-		@Test
-		@DisplayName("PCB-04-C5")
-		void PR05_CP005(){
-			//Arrange
-			HashMap<Date,Date> tiempos = new HashMap<>();
-			//Act
 
-			try {
-				Mockito.when(mockDatosFacturas.obtenerParesFechas()).thenReturn(tiempos);
-				
-			} catch (IOException | JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			
-			//Assert
-			assertThrows(IllegalArgumentException.class, ()->{this.ae.verHorasMasConcurridas();}, "No se lanza la excepción esperada ante una lista vacía");
-		}
-		
-		@Test
-		@DisplayName("PCB-04-C6")
-		@Disabled("El camino asociado a 8 -> 10 es instratable")
-		void PR05_CP006(){
-			/*//Arrange
-			HashMap<Date,Date> tiempos = new HashMap<>();
-			Date fecha = new Date(0);
-			HashMap<Integer, Double> x = null;
-			//Act
-
-
-			tiempos.put(fecha, fecha);
-
-			try {
-				Mockito.when(mockDatosFacturas.obtenerParesFechas()).thenReturn(tiempos);
-				x = this.ae.verHorasMasConcurridas();
-			} catch (IOException | JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			
-			//Assert
-			assertNotNull(x,"No se han obtenido horas más concurridas");*/
-		}
-		
-		@Test
-		@DisplayName("PCB-04-C7")
-		void PR05_CP007(){
-			//Arrange
-			HashMap<Date,Date> tiempos = new HashMap<>();
-			Date fecha = new Date(3000000);
-			Date fecha2 = new Date(1000000);
-			HashMap<Integer, Double> x = null;
-			//Act
-
-			
-			tiempos.put(fecha, fecha);
-			tiempos.put(fecha2,fecha2);
-
-			try {
-				Mockito.when(mockDatosFacturas.obtenerParesFechas()).thenReturn(tiempos);
-				x = this.ae.verHorasMasConcurridas();
-			} catch (IOException | JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			//Assert
-			assertNotNull(x,"No se han obtenido horas más concurridas");
-		}
-		
-		@Test
-		@DisplayName("PCB-04-C8")
-		void PR05_CP008(){
-			//Arrange
-			HashMap<Date,Date> tiempos = new HashMap<>();
-			HashMap<Integer, Double> x = null;
-			Date fecha = new Date();
-			//Act
-
-			
-			tiempos.put(fecha, fecha);
-			tiempos.put(fecha, fecha);
-
-			try {
-				Mockito.when(mockDatosFacturas.obtenerParesFechas()).thenReturn(tiempos);
-				x = this.ae.verHorasMasConcurridas();
-			} catch (IOException | JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			//Assert
-			assertNotNull(x,"No se han obtenido horas más concurridas");
 	}
-	}
-	
+//--------------------------------------------------------------------------------------------------------------------------
 	@Nested
 	class TestsVerPuntuacionesPlatosDia{
 		AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
