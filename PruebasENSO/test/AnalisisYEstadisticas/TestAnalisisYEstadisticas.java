@@ -37,7 +37,7 @@ class TestAnalisisYEstadisticas {
 	}
 
 	
-	// Uriel Fern�ndez Gra�a
+	// Uriel Fernández Graña
 	@Nested
 	class TestsverHorasMasConcurridas{
 		AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
@@ -77,7 +77,7 @@ class TestAnalisisYEstadisticas {
 			}
 			
 			//Assert
-			assertThrows(IllegalArgumentException.class, ()->{ae.verHorasMasConcurridas();},"No se ha avisado del error por el par�metro");
+			assertThrows(IllegalArgumentException.class, ()->{ae.verHorasMasConcurridas();},"No se ha avisado del error por el parámetro");
 		}
 		
 		@Test
@@ -100,7 +100,7 @@ class TestAnalisisYEstadisticas {
 			}
 			
 			//Assert
-			assertNotNull(x, "No se han podido calcular las horas m�s concurridas");
+			assertNotNull(x, "No se han podido calcular las horas más concurridas");
 		}
 		
 		@Test
@@ -125,7 +125,7 @@ class TestAnalisisYEstadisticas {
 			}
 			
 			//Assert
-			assertNotNull(x, "No se han podido calcular las horas m�s concurridas");
+			assertNotNull(x, "No se han podido calcular las horas más concurridas");
 		}
 		
 		@Test
@@ -150,7 +150,7 @@ class TestAnalisisYEstadisticas {
 			}
 			
 			//Assert
-			assertNotNull(x, "No se han podido calcular las horas m�s concurridas");
+			assertNotNull(x, "No se han podido calcular las horas más concurridas");
 		}
 		
 
@@ -279,7 +279,7 @@ class TestAnalisisYEstadisticas {
 		}
 		
 		
-		//Este camino es intratable dado que para ello deber�a de haber 2 platos con el mismo nombre en el array nomPlatos(para el if) pero en el primer
+		//Este camino es intratable dado que para ello debería de haber 2 platos con el mismo nombre en el array nomPlatos(para el if) pero en el primer
 		//if te impide que existan dos platos con el mismo nombre
 		@Test
 		@DisplayName("PCB-02-C7")
@@ -356,5 +356,118 @@ class TestAnalisisYEstadisticas {
 		
 		
 	}
+	//-----------------------------------------------------------------------------------------------
+	@Nested
+	class TestsVerPlatosMasComidos{
+		
+		AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
+		AnalisisYEstadisticasVerGestionDatosEstadisticas mockDatosEstadisticas;
+		
+		@InjectMocks
+		AnalisisYEstadisticas aest;
+		
+		@BeforeEach
+		void setUp() throws Exception {
+			aest = new AnalisisYEstadisticas();
+			mockDatosFacturas = Mockito.mock(AnalisisYEstadisticasVerGestionDatosFacturas.class);
+			mockDatosEstadisticas = Mockito.mock(AnalisisYEstadisticasVerGestionDatosEstadisticas.class);
+			
+			//Mock injection para el constructor de la clase a probar
+			MockitoAnnotations.initMocks(this);
 
+		}
+		
+
+		@AfterEach
+		void tearDown() throws Exception {
+			this.aest = null;
+		}
+		
+		@Test
+		@DisplayName("PCB-03-C1")
+		void PR03_CP01(){
+			//1-3
+			
+			try {
+				assertThrows(IllegalArgumentException.class, () -> {
+					this.aest.verPlatosMasComidos(null);
+				}, "Se esperaba una excepción IllegalArgumentException al valorar los platos y no se ha producido");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+		}
+		
+		@Test
+		@DisplayName("PCB-03-C2")
+		void PR03_CP02(){
+			//1-2-5
+			Date fecha=new Date(2030,1,1);//fecha futura
+			try {
+				assertThrows(ExcepcionFechaAnalisis.class, () -> {
+					this.aest.verPlatosMasComidos(fecha);
+				}, "Se esperaba una excepción ExcepcionFechaAnalisis y no se ha producido");
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+			
+		}
+		@Test
+		@DisplayName("PCB-03-C3")
+		void PR03_CP03(){
+			//1-2-4-6-9-13 
+			Date fecha=new Date();
+			HashMap<Plato,Integer> resultado=new HashMap<>();
+			
+			try {
+				resultado=this.aest.verPlatosMasComidos(fecha);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+			assertFalse(resultado.isEmpty(),"el resultado es vacio");
+			
+		}
+		@Test
+		@DisplayName("PCB-03-C4")//QUE PASE POR AMBOS FOR y 8
+		void PR03_CP04(){
+			//1-2-4-6-8-9-10-11-12-13 
+			Date fecha=new Date();
+			Plato plato=new Plato("primero","patatas");
+			ArrayList<Plato> listaPlatos=new ArrayList<>();
+			listaPlatos.add(plato);
+			HashMap<Plato,Integer> resultado=new HashMap<>();
+			
+			try {
+				Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(fecha)).thenReturn(listaPlatos);
+				resultado=this.aest.verPlatosMasComidos(fecha);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+			assertFalse(resultado.isEmpty(),"el resultado es vacio");
+			
+		}
+		@Test
+		@DisplayName("PCB-03-C5")////QUE PASE POR AMBOS FOR y 7 y 8
+		void PR03_CP05(){
+			//1-2-4-6-8-9-6-7-9-10-11-12-13 
+			Date fecha=new Date();
+			Plato plato=new Plato("primero","patatas");
+			ArrayList<Plato> listaPlatos=new ArrayList<>();
+			listaPlatos.add(plato);
+			listaPlatos.add(plato);
+			HashMap<Plato,Integer> resultado=new HashMap<>();
+			
+			try {
+				Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(fecha)).thenReturn(listaPlatos);
+				resultado=this.aest.verPlatosMasComidos(fecha);
+			}catch(Exception e) {
+					e.printStackTrace();
+			}
+			assertFalse(resultado.isEmpty(),"el resultado es vacio");
+			
+		}
+		
+		
+	}//test ver platos mas comidos
+	
+	
 }
