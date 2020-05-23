@@ -24,6 +24,7 @@ import org.mockito.MockitoAnnotations;
 import GestionDatos.Estadisticas.AnalisisYEstadisticasVerGestionDatosEstadisticas;
 import GestionDatos.Facturas.AnalisisYEstadisticasVerGestionDatosFacturas;
 import GestionDatos.Facturas.FacturasDAO;
+import GestionDatos.TiposDatos.Estadistica;
 import GestionDatos.TiposDatos.Plato;
 
 class TestAnalisisYEstadisticas {
@@ -468,6 +469,110 @@ class TestAnalisisYEstadisticas {
 		
 		
 	}//test ver platos mas comidos
-	
+	//Enrique Campos Durán
+		@Nested
+		class TestsverRankginPlatos{
+			AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
+			AnalisisYEstadisticasVerGestionDatosEstadisticas mockDatosEstadisticas;
+			
+			@InjectMocks
+			AnalisisYEstadisticas ae;
+
+			
+			@BeforeEach
+			void setUp() throws Exception {
+				this.ae = new AnalisisYEstadisticas();
+				this.mockDatosFacturas = Mockito.mock(AnalisisYEstadisticasVerGestionDatosFacturas.class);
+				this.mockDatosEstadisticas = Mockito.mock(AnalisisYEstadisticasVerGestionDatosEstadisticas.class);
+				
+				//Mock injection para el constructor de mi clase a probar
+				MockitoAnnotations.initMocks(this);
+
+			}
+
+			@AfterEach
+			void tearDown() throws Exception {
+				this.ae = null;
+			}
+			@Test
+			@DisplayName("PCB-01-C1")
+			void PR01_CP001(){
+				//Arrange
+				ArrayList<Estadistica> estadisticas = new ArrayList<Estadistica>();
+
+				try {
+					Mockito.when(mockDatosEstadisticas.obtenerEstadisticas()).thenReturn(estadisticas);
+				} catch (IOException | JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//Assert
+				assertThrows(IllegalArgumentException.class, ()->{ae.verRankginPlatos();},"No se ha avisado del error por el parámetro");
+			}
+			//sin entrar a fors
+			@Test
+			@DisplayName("PCB-01-C2")
+			void PR01_CP002(){
+				//Arrange
+				ArrayList<Estadistica> estadisticas = new ArrayList<Estadistica>();
+				Estadistica es = new Estadistica(1,"macarrones",5);
+				estadisticas.add(es);
+
+				try {
+					Mockito.when(mockDatosEstadisticas.obtenerEstadisticas()).thenReturn(estadisticas);
+				} catch (IOException | JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//Assert
+				assertThrows(IllegalArgumentException.class, ()->{ae.verRankginPlatos();},"No se ha avisado del error por el parámetro");
+			}
+			
+			//Para entrar en los fors
+			
+			
+			@Test
+			@DisplayName("PCB-01-C3")
+			void PR01_CP003(){
+				//Arrange
+				ArrayList<Estadistica> estadisticas = new ArrayList<Estadistica>();
+				Estadistica es = new Estadistica(1,"macarrones",5);
+				Estadistica es1 = new Estadistica(1,"pollo",5);
+				Estadistica es2 = new Estadistica(1,"patatas",5);
+				Estadistica es3 = new Estadistica(1,"tortilla",5);
+				Estadistica es4 = new Estadistica(1,"filete",5);
+				Estadistica es5 = new Estadistica(1,"sopa",5);
+				Estadistica es6 = new Estadistica(1,"lentejas",5);
+				Estadistica es7 = new Estadistica(1,"ensalada",5);
+				Estadistica es8 = new Estadistica(1,"sandwich",5);
+				Estadistica es9 = new Estadistica(1,"bocadillo",5);
+				Estadistica es10 = new Estadistica(1,"pescado",5);
+				estadisticas.add(es);
+				estadisticas.add(es1);
+				estadisticas.add(es2);
+				estadisticas.add(es3);
+				estadisticas.add(es4);
+				estadisticas.add(es5);
+				estadisticas.add(es6);
+				estadisticas.add(es7);
+				estadisticas.add(es8);
+				estadisticas.add(es9);
+				estadisticas.add(es10);
+				
+
+				try {
+					Mockito.when(mockDatosEstadisticas.obtenerEstadisticas()).thenReturn(estadisticas);
+				} catch (IOException | JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//Assert
+				assertThrows(IllegalArgumentException.class, ()->{ae.verRankginPlatos();},"No se ha avisado del error por el parámetro");
+			}
+			//Para entrar en el if de si hay mas de 10 cosas, el if de contains es intratable porque no puedo poner dos cosas con la misma key en un hashmap
+		}
 	
 }
