@@ -469,6 +469,8 @@ class TestAnalisisYEstadisticas {
 		
 		
 	}//test ver platos mas comidos
+	
+	//-----------------------------------------------------------------------------------------------
 	//Enrique Campos Durán
 		@Nested
 		class TestsverRankginPlatos{
@@ -518,16 +520,18 @@ class TestAnalisisYEstadisticas {
 				ArrayList<Estadistica> estadisticas = new ArrayList<Estadistica>();
 				Estadistica es = new Estadistica(1,"macarrones",5);
 				estadisticas.add(es);
+				HashMap<String,Double> x = new HashMap<String,Double>();
 
 				try {
 					Mockito.when(mockDatosEstadisticas.obtenerEstadisticas()).thenReturn(estadisticas);
+					x = this.ae.verRankginPlatos();
 				} catch (IOException | JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
 				//Assert
-				assertThrows(IllegalArgumentException.class, ()->{ae.verRankginPlatos();},"No se ha avisado del error por el parámetro");
+				assertNotNull(x, "No se han podido calcular el ranking de platos");
 			}
 			
 			//Para entrar en los fors
@@ -560,17 +564,18 @@ class TestAnalisisYEstadisticas {
 				estadisticas.add(es8);
 				estadisticas.add(es9);
 				estadisticas.add(es10);
-				
+				HashMap<String,Double> x = new HashMap<String,Double>();
 
 				try {
 					Mockito.when(mockDatosEstadisticas.obtenerEstadisticas()).thenReturn(estadisticas);
+					x = this.ae.verRankginPlatos();
 				} catch (IOException | JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
 				//Assert
-				assertThrows(IllegalArgumentException.class, ()->{ae.verRankginPlatos();},"No se ha avisado del error por el parámetro");
+				assertNotNull(x, "No se han podido calcular el ranking de platos");
 			}
 			//Para entrar en el if de si hay mas de 10 cosas, el if de contains es intratable porque no puedo poner dos cosas con la misma key en un hashmap
 		}
