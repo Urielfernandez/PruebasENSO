@@ -205,35 +205,10 @@ class TestAnalisisYEstadisticas {
 		}
 		
 		
-		//Es el mismo porque en el anterior no puedo hacer el for de 9->10 mas de una vez, dado que eese dato no lo puedo cambiar
+		
 		
 		@Test
 		@DisplayName("PCB-02-C2")
-		void PR02_CP02(){
-			ArrayList<Plato> p1=new ArrayList<>();
-			ArrayList<Integer> v1 = new ArrayList<>();
-			v1.add(1);
-			HashMap<String, Double> puntuaciones=null;
-			Date d= new Date();
-			try {
-			Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(d)).thenReturn(p1);
-			Mockito.when(mockDatosFacturas.obtenerValesCanjeados(d)).thenReturn(v1);
-			puntuaciones=this.aest.verPuntuacionesPlatosDia();
-			
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-				}
-			assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
-			
-		}
-		
-		//El camino 3 y 4 pasa lo mismo, no puedo dar varias vueltas a los for
-		
-		
-		
-		@Test
-		@DisplayName("PCB-02-C5")
 		void PR02_CP05(){
 			Plato p=new Plato("primero", "patatas");
 			ArrayList<Plato> p1=new ArrayList<>();
@@ -257,7 +232,7 @@ class TestAnalisisYEstadisticas {
 		}
 		
 		@Test
-		@DisplayName("PCB-02-C6")
+		@DisplayName("PCB-02-C3")
 		void PR02_CP06(){
 			Plato p=new Plato("primero", "patatas");
 			ArrayList<Plato> p1=new ArrayList<>();
@@ -283,8 +258,9 @@ class TestAnalisisYEstadisticas {
 		
 		//Este camino es intratable dado que para ello debería de haber 2 platos con el mismo nombre en el array nomPlatos(para el if) pero en el primer
 		//if te impide que existan dos platos con el mismo nombre
+		@Disabled("Este método tiene un camino imposible")
 		@Test
-		@DisplayName("PCB-02-C7")
+		@DisplayName("PCB-02-C4")
 		void PR02_CP07(){
 			Plato p=new Plato("primero", "patatas");
 			Plato p2=new Plato("primero", "patatas");
@@ -309,10 +285,8 @@ class TestAnalisisYEstadisticas {
 			
 		}
 		
-		//el caamino 8 ya se cumple en el primero
-		
 		@Test
-		@DisplayName("PCB-02-C9")
+		@DisplayName("PCB-02-C5")
 		void PR02_CP09(){
 			ArrayList<Plato> p1=new ArrayList<>();
 			ArrayList<Integer> v1 = new ArrayList<>();
@@ -332,7 +306,7 @@ class TestAnalisisYEstadisticas {
 		}
 		
 		@Test
-		@DisplayName("PCB-02-C10")
+		@DisplayName("PCB-02-C6")
 		void PR02_CP10(){
 			Plato p=new Plato("primero", "patatas");
 			ArrayList<Plato> p1=new ArrayList<>();
