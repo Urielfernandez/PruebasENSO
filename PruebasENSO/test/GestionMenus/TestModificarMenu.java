@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import GestionDatos.Menus.ExcepcionFechaMenu;
 import GestionDatos.TiposDatos.Plato;
 
 
@@ -53,7 +54,7 @@ class TestModificarMenu {
 	}
 
 	@Test
-	@DisplayName("P-04-C1")
+	@DisplayName("P-05-C1")
 	void PO4_C1() {
 		//Arrange
 		boolean fallo=false;
@@ -90,7 +91,9 @@ class TestModificarMenu {
 		try {
 			gm.modificarMenu(fecha,primeros, segundos, postres,fechaNueva);
 		}catch(Exception e) {
-			fallo=true;
+			if(!(e instanceof ExcepcionFechaMenu)) {
+				fallo=true;
+			}
 		}
 		//Assert
 		assertFalse(fallo,"Se ha producido una excepcion no esperada");
