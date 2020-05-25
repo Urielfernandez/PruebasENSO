@@ -157,180 +157,187 @@ class TestAnalisisYEstadisticas {
 
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	// Andre Camops Alvarez
-	@Nested
-	class TestsVerPuntuacionesPlatosDia{
-		AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
-		AnalisisYEstadisticasVerGestionDatosEstadisticas mockDatosEstadisticas;
-		
-		@InjectMocks
-		AnalisisYEstadisticas aest;
+	 // Andre Camops Alvarez
+    @Nested
+    class TestsVerPuntuacionesPlatosDia{
+        AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
+        AnalisisYEstadisticasVerGestionDatosEstadisticas mockDatosEstadisticas;
+        
+        @InjectMocks
+        AnalisisYEstadisticas aest;
 
-		
-		@BeforeEach
-		void setUp() throws Exception {
-			aest = new AnalisisYEstadisticas();
-			mockDatosFacturas = Mockito.mock(AnalisisYEstadisticasVerGestionDatosFacturas.class);
-			mockDatosEstadisticas = Mockito.mock(AnalisisYEstadisticasVerGestionDatosEstadisticas.class);
-			
-			//Mock injection para el constructor de la clase a probar
-			MockitoAnnotations.initMocks(this);
+ 
 
-		}
+        
+        @BeforeEach
+        void setUp() throws Exception {
+            this.aest = new AnalisisYEstadisticas();
+            mockDatosFacturas = Mockito.mock(AnalisisYEstadisticasVerGestionDatosFacturas.class);
+            mockDatosEstadisticas = Mockito.mock(AnalisisYEstadisticasVerGestionDatosEstadisticas.class);
+            
+            //Mock injection para el constructor de la clase a probar
+            MockitoAnnotations.initMocks(this);
 
-		@AfterEach
-		void tearDown() throws Exception {
-			this.aest = null;
-		}
-		
-		@Test
-		@DisplayName("PCB-02-C1")
-		void PR02_CP01(){
-			ArrayList<Plato> p1=new ArrayList<>();
-			ArrayList<Integer> v1 = new ArrayList<>();
-			v1.add(1);
-			HashMap<String, Double> puntuaciones=null;
-			Date d= new Date();
-			try {
-			Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(d)).thenReturn(p1);
-			Mockito.when(mockDatosFacturas.obtenerValesCanjeados(d)).thenReturn(v1);
-			puntuaciones=this.aest.verPuntuacionesPlatosDia();
-			
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-				}
-			assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
-			
-		}
-		
-		
-		
-		
-		@Test
-		@DisplayName("PCB-02-C2")
-		void PR02_CP05(){
-			Plato p=new Plato("primero", "patatas");
-			ArrayList<Plato> p1=new ArrayList<>();
-			p1.add(p);
-			ArrayList<Integer> v1 = new ArrayList<>();
-			v1.add(1);
-			HashMap<String, Double> puntuaciones=null;
-			Date d= new Date();
-			try {
-			Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(d)).thenReturn(p1);
-			Mockito.when(mockDatosFacturas.obtenerValesCanjeados(d)).thenReturn(v1);
-			Mockito.when(mockDatosEstadisticas.obtenerValoracion(2, "pato")).thenReturn(-1);
-			puntuaciones=this.aest.verPuntuacionesPlatosDia();
-			
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-				}
-			assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
-			
-		}
-		
-		@Test
-		@DisplayName("PCB-02-C3")
-		void PR02_CP06(){
-			Plato p=new Plato("primero", "patatas");
-			ArrayList<Plato> p1=new ArrayList<>();
-			p1.add(p);
-			ArrayList<Integer> v1 = new ArrayList<>();
-			v1.add(1);
-			HashMap<String, Double> puntuaciones=null;
-			Date d= new Date();
-			try {
-			Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(d)).thenReturn(p1);
-			Mockito.when(mockDatosFacturas.obtenerValesCanjeados(d)).thenReturn(v1);
-			Mockito.when(mockDatosEstadisticas.obtenerValoracion(2, "pato")).thenReturn(1);
-			puntuaciones=this.aest.verPuntuacionesPlatosDia();
-			
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-				}
-			assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
-			
-		}
-		
-		
-		//Este camino es intratable dado que para ello debería de haber 2 platos con el mismo nombre en el array nomPlatos(para el if) pero en el primer
-		//if te impide que existan dos platos con el mismo nombre
-		@Disabled("Este método tiene un camino imposible")
-		@Test
-		@DisplayName("PCB-02-C4")
-		void PR02_CP07(){
-			Plato p=new Plato("primero", "patatas");
-			Plato p2=new Plato("primero", "patatas");
-			ArrayList<Plato> p1=new ArrayList<>();
-			p1.add(p);
-			p1.add(p2);
-			ArrayList<Integer> v1 = new ArrayList<>();
-			v1.add(1);
-			HashMap<String, Double> puntuaciones=null;
-			Date d= new Date();
-			try {
-			Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(d)).thenReturn(p1);
-			Mockito.when(mockDatosFacturas.obtenerValesCanjeados(d)).thenReturn(v1);
-			Mockito.when(mockDatosEstadisticas.obtenerValoracion(2, "pato")).thenReturn(1);
-			puntuaciones=this.aest.verPuntuacionesPlatosDia();
-			
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-				}
-			assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
-			
-		}
-		
-		@Test
-		@DisplayName("PCB-02-C5")
-		void PR02_CP09(){
-			ArrayList<Plato> p1=new ArrayList<>();
-			ArrayList<Integer> v1 = new ArrayList<>();
-			HashMap<String, Double> puntuaciones=null;
-			Date d= new Date();
-			try {
-			Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(d)).thenReturn(p1);
-			Mockito.when(mockDatosFacturas.obtenerValesCanjeados(d)).thenReturn(v1);
-			
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-				}
-			assertThrows(IllegalArgumentException.class, ()->{this.aest.verPuntuacionesPlatosDia();},"No se ha avisado del error por el parámetro");
-			
-		}
-		
-		@Test
-		@DisplayName("PCB-02-C6")
-		void PR02_CP10(){
-			Plato p=new Plato("primero", "patatas");
-			ArrayList<Plato> p1=new ArrayList<>();
-			p1.add(p);
-			p1.add(p);
-			ArrayList<Integer> v1 = new ArrayList<>();
-			HashMap<String, Double> puntuaciones=null;
-			Date d= new Date();
-			try {
-			Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(d)).thenReturn(p1);
-			Mockito.when(mockDatosFacturas.obtenerValesCanjeados(d)).thenReturn(v1);
-			puntuaciones=this.aest.verPuntuacionesPlatosDia();
-			
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-				}
-			assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
-			
-		}
-		
-		
-		
-		
-	}
+ 
+
+        }
+
+ 
+
+        @AfterEach
+        void tearDown() throws Exception {
+            this.aest = null;
+        }
+        
+        @Test
+        @DisplayName("PCB-02-C1")
+        void PR02_CP01(){
+            ArrayList<Plato> p1=new ArrayList<>();
+            ArrayList<Integer> v1 = new ArrayList<>();
+            v1.add(87);
+            HashMap<String, Double> puntuaciones=null;
+            Date d= new Date();
+            try {
+            Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(Mockito.any(Date.class))).thenReturn(p1);
+            Mockito.when(mockDatosFacturas.obtenerValesCanjeados(Mockito.any(Date.class))).thenReturn(v1);
+            puntuaciones=this.aest.verPuntuacionesPlatosDia();
+            
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                }
+            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            
+        }
+        
+        
+        
+        
+        @Test
+        @DisplayName("PCB-02-C2")
+        void PR02_CP02(){
+            Plato p=new Plato("primero", "patatas");
+            ArrayList<Plato> p1=new ArrayList<>();
+            p1.add(p);
+            ArrayList<Integer> v1 = new ArrayList<>();
+            v1.add(1);
+            HashMap<String, Double> puntuaciones=null;
+            Date d= new Date();
+            try {
+            Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(Mockito.any(Date.class))).thenReturn(p1);
+            Mockito.when(mockDatosFacturas.obtenerValesCanjeados(Mockito.any(Date.class))).thenReturn(v1);
+            Mockito.when(mockDatosEstadisticas.obtenerValoracion(Mockito.anyInt(), Mockito.anyString())).thenReturn(-1);
+            puntuaciones=this.aest.verPuntuacionesPlatosDia();
+            
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                }
+            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            
+        }
+        
+        @Test
+        @DisplayName("PCB-02-C3")
+        void PR02_CP03(){
+            Plato p=new Plato("primero", "patatas");
+            ArrayList<Plato> p1=new ArrayList<>();
+            p1.add(p);
+            ArrayList<Integer> v1 = new ArrayList<>();
+            v1.add(87);
+            HashMap<String, Double> puntuaciones=null;
+            Date d= new Date();
+            try {
+            Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(Mockito.any(Date.class))).thenReturn(p1);
+            Mockito.when(mockDatosFacturas.obtenerValesCanjeados(Mockito.any(Date.class))).thenReturn(v1);
+            Mockito.when(mockDatosEstadisticas.obtenerValoracion(Mockito.anyInt(), Mockito.anyString())).thenReturn(1);
+            puntuaciones=this.aest.verPuntuacionesPlatosDia();
+            
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                }
+            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            
+        }
+        
+        
+        //Este camino es intratable dado que para ello debería de haber 2 platos con el mismo nombre en el array nomPlatos(para el if) pero en el primer
+        //if te impide que existan dos platos con el mismo nombre
+        @Disabled("Este método tiene un camino imposible")
+        @Test
+        @DisplayName("PCB-02-C4")
+        void PR02_CP04(){
+            Plato p=new Plato("primero", "patatas");
+            Plato p2=new Plato("primero", "patatas");
+            ArrayList<Plato> p1=new ArrayList<>();
+            p1.add(p);
+            p1.add(p2);
+            ArrayList<Integer> v1 = new ArrayList<>();
+            v1.add(1);
+            HashMap<String, Double> puntuaciones=null;
+            Date d= new Date();
+            try {
+            Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(Mockito.any(Date.class))).thenReturn(p1);
+            Mockito.when(mockDatosFacturas.obtenerValesCanjeados(Mockito.any(Date.class))).thenReturn(v1);
+            Mockito.when(mockDatosEstadisticas.obtenerValoracion(Mockito.anyInt(), Mockito.anyString())).thenReturn(1);
+            puntuaciones=this.aest.verPuntuacionesPlatosDia();
+            
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                }
+            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            
+        }
+        
+        @Test
+        @DisplayName("PCB-02-C5")
+        void PR02_CP05(){
+            ArrayList<Plato> p1=new ArrayList<>();
+            ArrayList<Integer> v1 = new ArrayList<>();
+            HashMap<String, Double> puntuaciones=null;
+            Date d= new Date();
+            try {
+            Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(Mockito.any(Date.class))).thenReturn(p1);
+            Mockito.when(mockDatosFacturas.obtenerValesCanjeados(Mockito.any(Date.class))).thenReturn(v1);
+            puntuaciones=this.aest.verPuntuacionesPlatosDia();
+            
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                }
+            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            
+        }
+        
+        @Test
+        @DisplayName("PCB-02-C6")
+        void PR02_CP6(){
+            Plato p=new Plato("primero", "patatas");
+            ArrayList<Plato> p1=new ArrayList<>();
+            p1.add(p);
+            p1.add(p);
+            ArrayList<Integer> v1 = new ArrayList<>();
+            HashMap<String, Double> puntuaciones=null;
+            Date d= new Date();
+            try {
+            Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(Mockito.any(Date.class))).thenReturn(p1);
+            Mockito.when(mockDatosFacturas.obtenerValesCanjeados(Mockito.any(Date.class))).thenReturn(v1);
+            puntuaciones=this.aest.verPuntuacionesPlatosDia();
+            
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+                }
+            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            
+        }
+        
+        
+        
+        
+    }
 	//-----------------------------------------------------------------------------------------------
 	//Damian Cruz Garcia
 	@Nested
