@@ -38,7 +38,7 @@ class TestAnalisisYEstadisticas {
 	}
 
 	
-	// Uriel Fernández Graña
+	// Uriel Fernandez Granha
 	@Nested
 	class TestsverHorasMasConcurridas{
 		AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
@@ -157,6 +157,7 @@ class TestAnalisisYEstadisticas {
 
 	}
 //--------------------------------------------------------------------------------------------------------------------------
+	// Andre Camops Alvarez
 	@Nested
 	class TestsVerPuntuacionesPlatosDia{
 		AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
@@ -358,6 +359,7 @@ class TestAnalisisYEstadisticas {
 		
 	}
 	//-----------------------------------------------------------------------------------------------
+	//Damian Cruz Garcia
 	@Nested
 	class TestsVerPlatosMasComidos{
 		
@@ -471,7 +473,7 @@ class TestAnalisisYEstadisticas {
 	}//test ver platos mas comidos
 	
 	//-----------------------------------------------------------------------------------------------
-	//Enrique Campos Durán
+	//Enrique Campos Duran
 		@Nested
 		class TestsverRankginPlatos{
 			AnalisisYEstadisticasVerGestionDatosFacturas mockDatosFacturas ;
@@ -510,7 +512,7 @@ class TestAnalisisYEstadisticas {
 				}
 				
 				//Assert
-				assertThrows(IllegalArgumentException.class, ()->{ae.verRankginPlatos();},"No se ha avisado del error por el parámetro");
+				assertThrows(IllegalArgumentException.class, ()->{ae.verRankginPlatos();},"No se ha avisado del error por el parametro");
 			}
 			//sin entrar a fors
 			@Test
