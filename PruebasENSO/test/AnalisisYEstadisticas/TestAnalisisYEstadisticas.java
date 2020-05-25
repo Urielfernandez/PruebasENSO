@@ -393,9 +393,10 @@ class TestAnalisisYEstadisticas {
 			//1-2-4-6-9-13 
 			Date fecha=new Date();
 			HashMap<Plato,Integer> resultado=new HashMap<>();
+			ArrayList<Plato> listaPlatos=new ArrayList<>();
 			
 			try {
-				resultado=this.aest.verPlatosMasComidos(fecha);
+				Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(fecha)).thenReturn(listaPlatos);
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
