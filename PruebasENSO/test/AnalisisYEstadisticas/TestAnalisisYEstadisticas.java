@@ -295,13 +295,12 @@ class TestAnalisisYEstadisticas {
 			try {
 			Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(d)).thenReturn(p1);
 			Mockito.when(mockDatosFacturas.obtenerValesCanjeados(d)).thenReturn(v1);
-			puntuaciones=this.aest.verPuntuacionesPlatosDia();
 			
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 				}
-			assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+			assertThrows(IllegalArgumentException.class, ()->{this.aest.verPuntuacionesPlatosDia();},"No se ha avisado del error por el parámetro");
 			
 		}
 		
