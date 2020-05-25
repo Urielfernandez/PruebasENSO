@@ -397,10 +397,11 @@ class TestAnalisisYEstadisticas {
 			
 			try {
 				Mockito.when(mockDatosFacturas.obtenerPlatosConsumidos(fecha)).thenReturn(listaPlatos);
+				assertThrows(IllegalArgumentException.class, ()->{aest.verPlatosMasComidos(fecha);},"No se ha avisado del error de que no hay platos para evaluar el más comido");
 			}catch(Exception e) {
 					e.printStackTrace();
 			}
-			assertFalse(resultado.isEmpty(),"el resultado es vacio");
+			
 			
 		}
 		@Test
