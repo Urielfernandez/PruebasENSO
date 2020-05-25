@@ -206,7 +206,7 @@ class TestAnalisisYEstadisticas {
             catch(Exception e) {
                 e.printStackTrace();
                 }
-            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            assertFalse(puntuaciones.isEmpty(),"no se han obtenido las puntuaciones de los platos");
             
         }
         
@@ -233,7 +233,7 @@ class TestAnalisisYEstadisticas {
             catch(Exception e) {
                 e.printStackTrace();
                 }
-            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            assertFalse(puntuaciones.isEmpty(),"no se han obtenido las puntuaciones de los platos");
             
         }
         
@@ -257,7 +257,7 @@ class TestAnalisisYEstadisticas {
             catch(Exception e) {
                 e.printStackTrace();
                 }
-            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            assertFalse(puntuaciones.isEmpty(),"no se han obtenido las puntuaciones de los platos");
             
         }
         
@@ -287,7 +287,7 @@ class TestAnalisisYEstadisticas {
             catch(Exception e) {
                 e.printStackTrace();
                 }
-            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            assertFalse(puntuaciones.isEmpty(),"no se han obtenido las puntuaciones de los platos");
             
         }
         
@@ -307,8 +307,7 @@ class TestAnalisisYEstadisticas {
             catch(Exception e) {
                 e.printStackTrace();
                 }
-            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
-            
+            assertFalse(puntuaciones.isEmpty(),"no se han obtenido las puntuaciones de los platos"); 
         }
         
         @Test
@@ -330,7 +329,7 @@ class TestAnalisisYEstadisticas {
             catch(Exception e) {
                 e.printStackTrace();
                 }
-            assertNotNull(puntuaciones, "no se han obtenido las puntuaciones de los platos");
+            assertFalse(puntuaciones.isEmpty(),"no se han obtenido las puntuaciones de los platos");
             
         }
         
