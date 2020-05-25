@@ -19,7 +19,7 @@ import GestionDatos.TiposDatos.Plato;
  * @author Enrique Campos Durán
  *
  */
-class TestGestionMenus {
+class TestCrearMenu {
 	//Fixtures
 	private static GestionMenus gm;
 	private ArrayList<Plato> primeros;
