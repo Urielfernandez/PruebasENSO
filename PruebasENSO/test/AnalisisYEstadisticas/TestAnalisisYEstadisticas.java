@@ -502,7 +502,9 @@ class TestAnalisisYEstadisticas {
 				//Arrange
 				ArrayList<Estadistica> estadisticas = new ArrayList<Estadistica>();
 				Estadistica es = new Estadistica(1,"macarrones",5);
+				Estadistica es2 = new Estadistica(1,"macarrones",5);
 				estadisticas.add(es);
+				estadisticas.add(es2);
 				HashMap<String,Double> x = new HashMap<String,Double>();
 
 				try {

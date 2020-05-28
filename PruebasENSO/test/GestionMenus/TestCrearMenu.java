@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import GestionDatos.Menus.ExcepcionFechaMenu;
 import GestionDatos.TiposDatos.Plato;
 
 
@@ -19,7 +20,7 @@ import GestionDatos.TiposDatos.Plato;
  * @author Enrique Campos Durán
  *
  */
-class TestGestionMenus {
+class TestCrearMenu {
 	//Fixtures
 	private static GestionMenus gm;
 	private ArrayList<Plato> primeros;
@@ -88,7 +89,9 @@ class TestGestionMenus {
 		try {
 			gm.crearMenu(primeros, segundos, postres, fecha);
 		}catch(Exception e) {
-			fallo=true;
+			if(!(e instanceof ExcepcionFechaMenu)) {
+				fallo=true;
+			}
 		}
 		//Assert
 		assertFalse(fallo,"Se ha producido una excepcion no esperada");
