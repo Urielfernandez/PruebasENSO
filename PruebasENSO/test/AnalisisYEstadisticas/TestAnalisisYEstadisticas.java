@@ -101,7 +101,7 @@ class TestAnalisisYEstadisticas {
 			}
 			
 			//Assert
-			assertNotNull(x, "No se han podido calcular las horas más concurridas");
+			assertTrue(!x.isEmpty(), "No se han podido calcular las horas más concurridas");
 		}
 		
 		@Test
@@ -126,7 +126,7 @@ class TestAnalisisYEstadisticas {
 			}
 			
 			//Assert
-			assertNotNull(x, "No se han podido calcular las horas más concurridas");
+			assertTrue(!x.isEmpty(), "No se han podido calcular las horas más concurridas");
 		}
 		
 		@Test
@@ -151,7 +151,7 @@ class TestAnalisisYEstadisticas {
 			}
 			
 			//Assert
-			assertNotNull(x, "No se han podido calcular las horas más concurridas");
+			assertTrue(!x.isEmpty(), "No se han podido calcular las horas más concurridas");
 		}
 		
 
